@@ -23,29 +23,6 @@ options(bitmapType='cairo')
 backwardFiles <- list.files("/home/datawork-flopped-nos/simuTale/goodArea/Backward/results/", pattern = ".nc", full.names = T)
 forwardFiles <- list.files("/home/datawork-flopped-nos/simuTale/goodArea/Forward/results/", pattern = ".nc", full.names = T)
 
-# create data for world coordinates using 
-# # map_data() function
-# world_coordinates <- map_data("world")
-# netcdf <- nc_open(filename = "~/Desktop/drakkar/simu_1964_11_forward_ichthyop-run202305290233.nc")
-# longitude <- ncvar_get(netcdf, varid="lon")
-# latitude <- ncvar_get(netcdf, varid="lat")
-# timetmp <- month.day.year(ncvar_get(netcdf, "time")/(3600*24), origin. = c(month = 1, day = 1, year = 1958))
-# monthtmp <- timetmp[["month"]]
-# yeartmp <- timetmp[["year"]]
-# daytmp  <- timetmp[["day"]]
-# date_nc <- as.POSIXct(paste(yeartmp, monthtmp, daytmp, sep="-"), format ="%Y-%m-%d", tz="GMT")
-# 
-# whichday <- 11
-# data <- data.frame(LongitudeDay30= longitude[,whichday], LatitudeDay30= latitude[,whichday], date=date_nc[whichday])
-# # dataset <- nc_open('D:/modelisationLarve/data/simuTale/forward/simu_1959_01_forward_ichthyop-run202305281402.nc')
-# input_folder <- 'D:/modelisationLarve/data/simuTale/test/'
-# output_folder <- 'C:/Users/dexin/Documents/Travail/COOOL/Travail/lagrangian/graphics/'
-# 
-# p <- ggplot(data, aes(x=LongitudeDay30, y=LatitudeDay30)) + geom_density_2d_filled(alpha = 0.5) + 
-#   geom_map(  data = world_coordinates, map = world_coordinates,  aes(long, lat, map_id = region)) + xlim(40, 130) + ylim(-50,30)+ggtitle(label = paste(date_nc[whichday]) )
-# p
-# # Get the names of all files in the folder
-# file_names <- list.files(path = input_folder, full.names = TRUE)
 world_coordinates <- map_data("world")
 if (arrayid <335){
   fileBack <- backwardFiles[arrayid]
@@ -105,7 +82,7 @@ if (arrayid <335){
   date_nc <- as.POSIXct(paste(yeartmp, monthtmp, daytmp, sep="-"), format ="%Y-%m-%d", tz="GMT")
   print(date_nc)
   
-  whichday <- 4 # backward: 8, 5, 1 // forward: 4, 7, 11
+  whichday <- 4 
   #world_coordinates <- map_data("world")  
   while(whichday <= length(date_nc)) {
     print(date_nc[whichday])
